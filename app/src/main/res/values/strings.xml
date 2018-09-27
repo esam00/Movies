@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <!--error message for network connection-->
+    <string name="error_message">There was a problem with loading data , please try again </string>
+
+    <!--error message for network connection-->
+    <string name="no_internet_message">No Internet Connection!</string>
+
+    <!--label of the DetailsActivity -->
+    <string name="details_activity">Details</string>
+
+    <!--menu item title to sort movies by the most popular-->
+    <string name="popularity"> Most Popular</string>
+
+    <!--menu item title to sort movies by the highest rated-->
+    <string name="high_rated">Highest Rated</string>
+
+    <string name="rate_label">Rate : </string>
+
+    <string name="date_label">Released on : </string>
+</resources>

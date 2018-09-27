@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--dimensions of details activity xml -->
+    <dimen name="card_view_radius">9dp</dimen>
+
+    <dimen name="card_view_elevation">9dp</dimen>
+
+    <dimen name="image_view_width">214dp</dimen>
+
+    <dimen name="image_view_height">350dp</dimen>
+
+    <dimen name="rate_labels_top_and_bottom_padding">30dp</dimen>
+
+    <dimen name="rate_labels_left_and_right_padding">10dp</dimen>
+</resources>
