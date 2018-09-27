@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private TextView mErrorMessageDisplay;
     private TextView mNetworkMessage;
 
-    private String mSortByParam;
+    private String mSortByParam = "popular";
 
     private ProgressBar mLoadingIndicator;
+
+    private NetworkInfo networkInfo;
 
     private static final int MOVIE_LOADER_ID = 0;
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        networkInfo = connMgr.getActiveNetworkInfo();
 
         // If there is a network connection, fetch data
         if(networkInfo!=null && networkInfo.isConnected()){
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                     jsonMovieResponse = NetworkUtils.getResponseFromHttpUrl(url);
                 } catch (IOException e1) {
                     e1.printStackTrace();
-                    showErrorMessage();
+
                 }
 
                 List<Movie> simpleMovieJsonData;
@@ -119,7 +121,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                     return simpleMovieJsonData;
                 } catch (JSONException e1) {
                     e1.printStackTrace();
-                    showErrorMessage();
                     return null;
                 }
 
@@ -190,15 +191,20 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id==R.id.action_sort_by_popularity){
-            mAdapter.setMovieData(null);
-            mSortByParam = "popularity.desc";
-            getSupportLoaderManager().restartLoader(MOVIE_LOADER_ID,null,this);
+            if (networkInfo!=null&& networkInfo.isConnected()){
+                mAdapter.setMovieData(null);
+                mSortByParam = "popular";
+                getSupportLoaderManager().restartLoader(MOVIE_LOADER_ID,null,this);
+            }
+
         }
 
-        if (id==R.id.action_sort_by_high_rated){
-            mAdapter.setMovieData(null);
-            mSortByParam = "vote_average.desc";
-            getSupportLoaderManager().restartLoader(MOVIE_LOADER_ID,null,this);
+        if (id==R.id.action_sort_by_high_rated) {
+            if (networkInfo != null && networkInfo.isConnected()) {
+                mAdapter.setMovieData(null);
+                mSortByParam = "top_rated";
+                getSupportLoaderManager().restartLoader(MOVIE_LOADER_ID, null, this);
+            }
         }
         return true;
     }

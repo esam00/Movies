@@ -18,4 +18,8 @@
     <string name="rate_label">Rate : </string>
 
     <string name="date_label">Released on : </string>
+
+    <string name="sort_by_popular">popular</string>
+
+    <string name="sort_by_top_rated">top_rated</string>
 </resources>

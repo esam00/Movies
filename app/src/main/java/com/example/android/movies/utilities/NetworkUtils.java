@@ -3,6 +3,8 @@ package com.example.android.movies.utilities;
 import android.net.Uri;
 import android.util.Log;
 
+import com.example.android.movies.BuildConfig;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -15,9 +17,9 @@ public class NetworkUtils {
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
     //  api key , please put your api key here so the app can run correctly
-    private static final String API_KEY = "";
+    private static final String API_KEY = BuildConfig.API_KEY;
 
-    private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/discover/movie";
+    private static final String BASE_MOVIE_URL = "https://api.themoviedb.org/3/movie";
 
     // Specify a language to query translatable fields with.
     private static final String language = "en-US";
@@ -35,7 +37,6 @@ public class NetworkUtils {
     // url parameters constants
     static final String API_KEY_PARAM = "api_key";
     static final String LANGUAGE_PARAM = "language";
-    static final String SORT_BY_PARAM = "sort_by";
     static final String INCLUDE_ADULT_PARAM = "include_adult";
     static final String INCLUDE_VIDEO_PARAM = "include_video";
     static final String PAGES_PARAM = "page";
@@ -44,14 +45,14 @@ public class NetworkUtils {
      * Builds the URL used to talk to the movieDB server using a sort by parameter which specified
      * according to user preferences
      *
-     * @param sortBy The location that will be queried for.
+     * @param sortBy specify the sort order depending on user preferences it could be popular or top_rated
      * @return The URL
      */
     public static URL buildUrl (String sortBy){
         Uri buildUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
+                .appendPath(sortBy)
                 .appendQueryParameter(API_KEY_PARAM,API_KEY)
                 .appendQueryParameter(LANGUAGE_PARAM,language)
-                .appendQueryParameter(SORT_BY_PARAM,sortBy)
                 .appendQueryParameter(INCLUDE_ADULT_PARAM,String.valueOf(includeAdults))
                 .appendQueryParameter(INCLUDE_VIDEO_PARAM,String.valueOf(includeVideo))
                 .appendQueryParameter(PAGES_PARAM,String.valueOf(page))
