@@ -4,115 +4,224 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    android:background="@color/color_details_activity_background"
+    android:background="@color/colorPrimaryDark"
     tools:context=".DetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="7dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingBottom="0dp">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/card_view_radius"
-                android:elevation="@dimen/card_view_elevation"
-                app:cardPreventCornerOverlap="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/show_poster_iv"
-                    android:layout_width="@dimen/image_view_width"
-                    android:layout_height="@dimen/image_view_height"
-                    android:scaleType="centerCrop"
+                    android:layout_width="150dp"
+                    android:layout_height="220dp"
                     android:background="@android:color/darker_gray"
-                    android:focusableInTouchMode="true"
                     android:focusable="true"
-                    />
-            </android.support.v7.widget.CardView>
+                    android:focusableInTouchMode="true"
+                    android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/rate_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/primary_text_dark"
-                android:paddingTop="@dimen/rate_labels_top_and_bottom_padding"
-                android:paddingLeft="@dimen/rate_labels_left_and_right_padding"
-                android:paddingBottom="@dimen/rate_labels_top_and_bottom_padding"
-                android:paddingRight="@dimen/rate_labels_left_and_right_padding"
-                android:layout_toRightOf="@id/card_view"
-                android:text="@string/rate_label"
-                android:textAppearance="?android:textAppearanceMedium"
-                />
-            <TextView
-                android:id="@+id/show_rate_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/colorAccent"
-                android:layout_toRightOf="@+id/rate_label"
-                android:paddingTop="@dimen/rate_labels_top_and_bottom_padding"
-                tools:text="5.5"
-                android:paddingBottom="@dimen/rate_labels_top_and_bottom_padding"
-                android:textAppearance="?android:textAppearanceMedium"
-                />
 
-            <TextView
-                android:id="@+id/date_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rate_label"
-                android:layout_toEndOf="@+id/card_view"
-                android:layout_toRightOf="@+id/card_view"
-                android:textColor="@android:color/primary_text_dark"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="30dp"
-                android:text="@string/date_label"
-                android:textAppearance="?android:textAppearanceMedium" />
+                <TextView
+                    android:id="@+id/rate_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/show_poster_iv"
+                    android:paddingLeft="30dp"
+                    android:paddingTop="@dimen/rate_labels_top_and_bottom_padding"
+                    android:paddingRight="@dimen/rate_labels_left_and_right_padding"
+                    android:paddingBottom="@dimen/rate_labels_top_and_bottom_padding"
+                    android:text="@string/rate_label"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@android:color/primary_text_dark" />
 
-            <TextView
-                android:id="@+id/show_date_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/date_label"
-                android:layout_toEndOf="@+id/card_view"
-                android:layout_toRightOf="@+id/card_view"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@android:color/secondary_text_dark"
-                android:paddingLeft="20dp"
-                tools:text="28/7/2018"/>
+                <TextView
+                    android:id="@+id/show_rate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/rate_label"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/rate_labels_top_and_bottom_padding"
+                    android:paddingBottom="@dimen/rate_labels_top_and_bottom_padding"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/colorAccent"
+                    tools:text="5.5" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/date_label"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/rate_label"
+                    android:layout_alignStart="@+id/rate_label"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/icon_realse_time" />
+
+                <TextView
+                    android:id="@+id/show_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/show_rate_tv"
+                    android:layout_alignLeft="@+id/date_label"
+                    android:layout_marginStart="25dp"
+                    android:layout_toEndOf="@+id/date_label"
+                    android:paddingLeft="20dp"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/colorAccent"
+                    tools:text="28/7/2018" />
+
+                <ImageButton
+                    android:id="@+id/like_Button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="@drawable/icon_unfavorite" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_show_movie_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            tools:text="Solo: A Star Wars Story"
-            android:textColor="@android:color/white"
+            android:fontFamily="monospace"
             android:gravity="center"
             android:textAppearance="?android:textAppearanceLarge"
-            android:fontFamily="monospace"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
+            tools:text="Solo: A Star Wars Story" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".7dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="overview"
             />
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="7dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="4dp"
+            app:contentPaddingBottom="0dp">
 
         <TextView
             android:id="@+id/tv_show_movie_overView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
+            android:padding="16dp"
             android:textAppearance="?android:textAppearanceMedium"
-            android:padding="8dp"
-            android:textColor="@android:color/secondary_text_dark_nodisable"
-            tools:text="Through a series of daring escapades deep within a dark and dangerous criminal underworld, Han Solo meets his mighty future copilot Chewbacca and encounters the notorious gambler Lando Calrissian."
+            android:textColor="@android:color/white"
+            tools:text="Through a series of daring escapades deep within a dark and dangerous criminal underworld, Han Solo meets his mighty future copilot Chewbacca and encounters the notorious gambler Lando Calrissian." />
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".7dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_reviews_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reviews"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviews_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_no_reviews_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/primary_text_dark"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_reviews_message"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:id="@+id/tv_no_network_connection_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/primary_text_dark"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_network_connection_message"
+            android:visibility="invisible"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".7dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_trailers_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="trailers"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trailers_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tv_no_trailers_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/primary_text_dark"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/no_trailers_message"
+            android:visibility="invisible"
             />
 
     </LinearLayout>

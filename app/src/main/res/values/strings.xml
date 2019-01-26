@@ -1,10 +1,19 @@
 <resources>
     <string name="app_name">Movies</string>
+
     <!--error message for network connection-->
-    <string name="error_message">There was a problem with loading data , please try again </string>
+    <string name="error_message">There was a problem with loading data! check your connection and try again</string>
 
     <!--error message for network connection-->
     <string name="no_internet_message">No Internet Connection!</string>
+
+    <string name="no_reviews_message">This movie has no reviews</string>
+
+    <string name="no_favorite_movies_message">You have no favorite movies </string>
+
+    <string name="no_network_connection_message"> no reviews available, check your connection and try again  </string>
+
+    <string name="no_trailers_message">no trailers available , check your connection and try again </string>
 
     <!--label of the DetailsActivity -->
     <string name="details_activity">Details</string>
@@ -15,11 +24,22 @@
     <!--menu item title to sort movies by the highest rated-->
     <string name="high_rated">Highest Rated</string>
 
-    <string name="rate_label">Rate : </string>
+    <!--menu item title to sort movies by the highest rated-->
+    <string name="favorites">My Favorites</string>
 
-    <string name="date_label">Released on : </string>
+    <string name="rate_label">Rate : </string>
 
     <string name="sort_by_popular">popular</string>
 
     <string name="sort_by_top_rated">top_rated</string>
+
+    <string name="long_text">Through a series of daring escapades deep within a dark and dangerous
+        criminal underworld, Han Solo meets his mighty future copilot Chewbacca and encounters the
+        notorious gambler Lando Calrissian.Through a series of daring escapades deep within a dark
+        and dangerous criminal underworld, Han Solo meets his mighty future copilot Chewbacca and
+        encounters the notorious gambler Lando Calrissian.</string>
+
+    <string name="expand">view more</string>
+    <string name="collapse">collapse</string>
+
 </resources>

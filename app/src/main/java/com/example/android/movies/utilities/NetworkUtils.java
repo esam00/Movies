@@ -40,6 +40,8 @@ public class NetworkUtils {
     static final String INCLUDE_ADULT_PARAM = "include_adult";
     static final String INCLUDE_VIDEO_PARAM = "include_video";
     static final String PAGES_PARAM = "page";
+    static final String VIDEO_PATH = "videos";
+    static final String REVIEWS_PATH = "reviews";
 
     /**
      * Builds the URL used to talk to the movieDB server using a sort by parameter which specified
@@ -56,6 +58,56 @@ public class NetworkUtils {
                 .appendQueryParameter(INCLUDE_ADULT_PARAM,String.valueOf(includeAdults))
                 .appendQueryParameter(INCLUDE_VIDEO_PARAM,String.valueOf(includeVideo))
                 .appendQueryParameter(PAGES_PARAM,String.valueOf(page))
+                .build();
+        URL url = null ;
+        try {
+            url = new URL(buildUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.v(TAG,"built URL : "+url);
+
+        return url;
+    }
+
+    /**
+     * Builds the URL used to request trailers of the current movie using movie id
+     *
+     * @param movieId specify the id of the selected movie
+     * @return The URL
+     */
+    public static URL buildTrailerRequestUrl (String movieId){
+        Uri buildUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
+                .appendPath(movieId)
+                .appendPath(VIDEO_PATH)
+                .appendQueryParameter(API_KEY_PARAM,API_KEY)
+                .appendQueryParameter(LANGUAGE_PARAM,language)
+                .build();
+        URL url = null ;
+        try {
+            url = new URL(buildUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        Log.v(TAG,"built URL : "+url);
+
+        return url;
+    }
+
+    /**
+     * Builds the URL used to request reviews of the current movie using movie id
+     *
+     * @param movieId specify the id of the selected movie
+     * @return The URL
+     */
+    public static URL buildReviewsRequestUrl (String movieId){
+        Uri buildUri = Uri.parse(BASE_MOVIE_URL).buildUpon()
+                .appendPath(movieId)
+                .appendPath(REVIEWS_PATH)
+                .appendQueryParameter(API_KEY_PARAM,API_KEY)
+                .appendQueryParameter(LANGUAGE_PARAM,language)
                 .build();
         URL url = null ;
         try {
@@ -95,4 +147,5 @@ public class NetworkUtils {
             urlConnection.disconnect();
         }
     }
+
 }

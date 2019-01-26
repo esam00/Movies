@@ -2,12 +2,13 @@ package com.example.android.movies;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -31,11 +32,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public ImageView poster;
+       private ImageView poster;
+        private TextView title;
 
         public ViewHolder(View itemView) {
             super(itemView);
             poster = itemView.findViewById(R.id.iv_poster);
+            title = itemView.findViewById(R.id.tv_movie_title);
             itemView.setOnClickListener(this);
 
         }
@@ -64,6 +67,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = mMovies.get(position);
         ImageView posterImageView = holder.poster;
+        TextView movieTitleTextView = holder.title;
+
+        movieTitleTextView.setText(movie.getMovieTitle());
 
         String posterUri = getImageUri(movie);
 

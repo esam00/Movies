@@ -1,6 +1,8 @@
 package com.example.android.movies.utilities;
 
 import com.example.android.movies.Movie;
+import com.example.android.movies.Review;
+import com.example.android.movies.TrailerAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +30,7 @@ public final class OpenMovieJsonUtils {
         List <Movie> movies = new ArrayList<>();
 
         final String RESULTS_ARRAY = "results";
+        final String MOVIE_ID = "id";
         final String ORIGINAL_TITLE = "original_title";
         final String VOTE_AVERAGE = "vote_average";
         final String POSTER_PATH = "poster_path";
@@ -54,16 +57,74 @@ public final class OpenMovieJsonUtils {
             for (int i=0; i<resultsArray.length(); i++){
                 JSONObject movieSingleItem = resultsArray.getJSONObject(i);
 
+                int id = movieSingleItem.getInt(MOVIE_ID);
                 Double rate = movieSingleItem.getDouble(VOTE_AVERAGE);
                 String poster = movieSingleItem.getString(POSTER_PATH);
                 String originalTitle = movieSingleItem.getString(ORIGINAL_TITLE);
                 String overview = movieSingleItem.getString(OVERVIEW);
                 String date = movieSingleItem.getString(DATE);
 
-                Movie movie = new Movie(rate,poster,originalTitle,overview,date);
+                Movie movie = new Movie(id,rate,poster,originalTitle,overview,date);
                 movies.add(movie);
             }
         return movies;
     }
+
+    /**
+     * This method parses JSON from a response of movie video (trailer) and returns the youtube key
+     *
+     * @param trailerJsonString JSON response from server
+     *
+     * @return key of youtube url
+     *
+     * @throws JSONException If JSON data cannot be properly parsed
+     */
+
+    public static List<String> getMovieYoutubeKeyFromJson (String trailerJsonString) throws JSONException{
+        final String RESULTS_ARRAY = "results";
+        final String KEY_ITEM = "key";
+        final List<String> keys = new ArrayList<>();
+
+        JSONObject root = new JSONObject(trailerJsonString);
+        JSONArray resultsArray = root.getJSONArray(RESULTS_ARRAY);
+        for (int i =0 ; i<resultsArray.length(); i++){
+            JSONObject trailerInfo = resultsArray.getJSONObject(i);
+            String key = trailerInfo.getString(KEY_ITEM);
+            keys.add(key);
+        }
+
+        return keys;
+    }
+
+    /**
+     * This method parses JSON from a response of movie reviews and returns list of reviews
+     *
+     * @param reviewJsonString JSON response from server
+     *
+     * @return String review
+     *
+     * @throws JSONException If JSON data cannot be properly parsed
+     */
+
+    public static List<Review> getMovieReviewFromJson (String reviewJsonString) throws JSONException{
+        final String RESULTS_ARRAY = "results";
+        final String AUTHOR_ITEM = "author";
+        final String CONTENT_ITEM = "content";
+
+        List<Review> reviews = new ArrayList<>();
+
+        JSONObject root = new JSONObject(reviewJsonString);
+        JSONArray resultsArray = root.getJSONArray(RESULTS_ARRAY);
+        for (int i = 0 ; i<resultsArray.length() ; i++){
+            JSONObject reviewItem = resultsArray.getJSONObject(i);
+            String author = reviewItem.getString(AUTHOR_ITEM);
+            String review = reviewItem.getString(CONTENT_ITEM);
+            reviews.add(new Review(review,author));
+        }
+
+        return reviews;
+    }
+
+
 
 }

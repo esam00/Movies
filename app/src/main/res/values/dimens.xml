@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--dimensions of details activity xml -->
-    <dimen name="card_view_radius">9dp</dimen>
+    <dimen name="card_view_radius">8dp</dimen>
 
     <dimen name="card_view_elevation">9dp</dimen>
 
